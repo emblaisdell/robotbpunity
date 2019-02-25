@@ -39,7 +39,7 @@ public class Robot : MonoBehaviour {
     public float armTorque;
     public float handTorque;
 
-    const float friction = 1f;
+    const float friction = 10f;
 
     // Use this for initialization
     public void Init (int[] mem) {
@@ -141,9 +141,9 @@ public class Robot : MonoBehaviour {
          * 
          */
 
-        /*waistTorque = 0f;
+        waistTorque = 0f;
         armTorque = 0f;
-        handTorque = 0f;*/
+        handTorque = 0f;
 
         Master.master.NextTurn();
     }
