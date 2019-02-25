@@ -6,7 +6,7 @@ public class Robot : MonoBehaviour {
 
     public int team;
 
-    bool running;
+    public bool running;
 
     public Controller controller;
     public Interpreter interpreter;
@@ -55,6 +55,10 @@ public class Robot : MonoBehaviour {
             for(int cycle=0; cycle<cycles; cycle++)
             {
                 interpreter.ExecuteNextInstruction();
+            }
+            if (!interpreter.IsRunning())
+            {
+                ShutDown();
             }
         }
     }
@@ -140,6 +144,8 @@ public class Robot : MonoBehaviour {
         /*waistTorque = 0f;
         armTorque = 0f;
         handTorque = 0f;*/
+
+        Master.master.NextTurn();
     }
 
 }

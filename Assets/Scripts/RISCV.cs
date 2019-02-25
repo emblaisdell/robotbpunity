@@ -63,7 +63,10 @@ public class RISCV : Interpreter {
 
     public void ExecuteNextInstruction()
     {
-        ExecuteInstruction(LoadMemory(pc));
+        if (isRunning)
+        {
+            ExecuteInstruction(LoadMemory(pc));
+        }
     }
 
     public void ExecuteInstruction(int instr)
@@ -306,7 +309,7 @@ public class RISCV : Interpreter {
             if (args.funct3 == 0x0) { // system
                 if (args.imm == 0x000)
                 {
-                    if (instr == 0x00100073) // ECALL
+                    if (instr == 0x00000073) // ECALL
                     {
                         // unimplemented
                     }
@@ -374,7 +377,11 @@ public class RISCV : Interpreter {
             }
         } else // unrecognized
         {
-
+            if (instr != 0) // nop
+            {
+                MonoBehaviour.print("Unrecognized instruction:");
+                MonoBehaviour.print(System.Convert.ToString(instr, 16));
+            }
         }
         pc++;
     }

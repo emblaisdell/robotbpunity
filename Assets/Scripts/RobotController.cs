@@ -88,9 +88,9 @@ public class RobotController : Controller
 
     public void WriteCSR(int addr, int intValue)
     {
-        MonoBehaviour.print("write csr");
+        /*MonoBehaviour.print("write csr");
         MonoBehaviour.print("addr: "+addr);
-        MonoBehaviour.print("value: "+intValue);
+        MonoBehaviour.print("value: "+intValue);*/
         float value = Int2Float(intValue);
         if(addr == 0x8)
         {

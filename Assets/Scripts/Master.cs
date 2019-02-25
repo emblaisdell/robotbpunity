@@ -20,7 +20,7 @@ public class Master : MonoBehaviour
 
     public static Master master;
 
-    public const float turnTime = 2f;
+    public const float turnTime = 5f;//from docs
     public float turnTimer = 0f;
 
     // Start is called before the first frame update
@@ -143,11 +143,17 @@ public class Master : MonoBehaviour
 
         if(turnTimer <= 0f)
         {
-            turnTimer = turnTime;
-            robots[runningTeam].ShutDown();
-            runningTeam = OtherTeam(runningTeam);
-            //print(runningTeam);
-            robots[runningTeam].StartUp();
+            if (robots[runningTeam].GetComponent<Robot>().running)
+            {
+                robots[runningTeam].ShutDown();
+            }
         }
+    }
+
+    public void NextTurn()
+    {
+        turnTimer = turnTime;
+        runningTeam = OtherTeam(runningTeam);
+        robots[runningTeam].StartUp();
     }
 }
